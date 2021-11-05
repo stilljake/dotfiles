@@ -11,8 +11,12 @@
 # # Don't require escaping globbing characters in zsh.
 # unsetopt nomatch
 
-# # Nicer prompt.
-# export PS1=$'\n'"%F{green} %*%F %3~ %F{white}"$'\n'"$ "
+# Nicer prompt.
+COLOR_DEF=$'\e[0m'
+COLOR_DIR=$'\e[38;5;243m'
+COLOR_GIT=$'%F{blue}'
+setopt PROMPT_SUBST
+export PROMPT='%n ${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
 
 
 # Custom $PATH with extra locations.
@@ -62,6 +66,12 @@ knownrm() {
    sed -i '' "$1d" ~/.ssh/known_hosts
  fi
 }
+
+function parse_git_branch() {
+    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
+}
+
+
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
