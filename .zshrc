@@ -16,7 +16,7 @@ COLOR_DEF=$'\e[0m'
 COLOR_DIR=$'\e[38;5;243m'
 COLOR_GIT=$'%F{blue}'
 setopt PROMPT_SUBST
-export PROMPT='%n ${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
+export PROMPT='${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
 
 
 # Custom $PATH with extra locations.
