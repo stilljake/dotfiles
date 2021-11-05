@@ -85,7 +85,7 @@ chflags nohidden ~/Library
 defaults write com.apple.dock tilesize -int 30
 
 # Set Dock to the left of screen
-defaults write com.apple.dock orientaion -string left
+defaults write com.apple.dock orientation -string left
 
 ###############################################################################
 # Kill/restart affected applications                                          #
