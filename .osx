@@ -90,6 +90,9 @@ defaults write com.apple.dock tilesize -int 45
 # Set Dock to the left of screen
 defaults write com.apple.dock orientation -string left
 
+# Don't show recent items in the Dock
+defaults write com.apple.dock show-recents -int 0
+
 ###############################################################################
 # Kill/restart affected applications                                          #
 ###############################################################################
