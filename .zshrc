@@ -64,4 +64,4 @@ knownrm() {
 }
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ${share_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
