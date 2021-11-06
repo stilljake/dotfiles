@@ -2,6 +2,9 @@
 
 
 # Nicer prompt.
+function parse_git_branch() {
+    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
+}
 COLOR_DEF=$'\e[0m'
 COLOR_DIR=$'\e[38;5;243m'
 COLOR_GIT=$'%F{blue}'
