@@ -5,15 +5,22 @@
 function parse_git_branch() {
     git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
 }
-COLOR_DEF=$'\e[0m'
-COLOR_DIR=$'\e[38;5;243m'
+COLOR_DEF=$'%F{white}'
+COLOR_DIR=$'%{\e[38;5;243m%}'
 COLOR_GIT=$'%F{blue}'
 setopt PROMPT_SUBST
 export PROMPT='${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
 
+# Case insensitive
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+autoload -Uz compinit && compinit
+setopt MENU_COMPLETE
 
 # Custom $PATH with extra locations.
 export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$PATH
+
+# Tell homebrew to not autoupdate every single time I run it (just once a week).
+export HOMEBREW_AUTO_UPDATE_SECS=604800
 
 # Set architecture-specific brew share path.
 arch_name="$(uname -m)"
@@ -26,14 +33,19 @@ else
 fi
 
 # Git aliases.
+alias g='git'
+
+alias ga='git add'
+alias gaa='git add --all'
 alias gs='git status'
 alias gc='git commit'
 alias gp='git pull --rebase'
 alias gcam='git commit -am'
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 
-# Tell homebrew to not autoupdate every single time I run it (just once a week).
-export HOMEBREW_AUTO_UPDATE_SECS=604800
+# navigation aliases
+alias dev="cd ~/Development/"
+alias ..='cd ..'
 
 # Enter a running Docker container.
 function denter() {
@@ -56,5 +68,6 @@ knownrm() {
  fi
 }
 
+# zsh Plugins
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
