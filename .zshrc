@@ -1,15 +1,5 @@
-#
 # .zshrc
-#
-#
 
-# Colors.
-# unset LSCOLORS
-# export CLICOLOR=0
-# export CLICOLOR_FORCE=1
-
-# # Don't require escaping globbing characters in zsh.
-# unsetopt nomatch
 
 # Nicer prompt.
 COLOR_DEF=$'\e[0m'
@@ -18,10 +8,8 @@ COLOR_GIT=$'%F{blue}'
 setopt PROMPT_SUBST
 export PROMPT='${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
 
-
 # Custom $PATH with extra locations.
 export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$PATH
-
 
 # Set architecture-specific brew share path.
 arch_name="$(uname -m)"
@@ -33,7 +21,6 @@ else
     echo "Unknown architecture: ${arch_name}"
 fi
 
-
 # Git aliases.
 alias gs='git status'
 alias gc='git commit'
@@ -41,10 +28,8 @@ alias gp='git pull --rebase'
 alias gcam='git commit -am'
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 
-
 # Tell homebrew to not autoupdate every single time I run it (just once a week).
 export HOMEBREW_AUTO_UPDATE_SECS=604800
-
 
 # Enter a running Docker container.
 function denter() {
@@ -66,12 +51,6 @@ knownrm() {
    sed -i '' "$1d" ~/.ssh/known_hosts
  fi
 }
-
-function parse_git_branch() {
-    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
-}
-
-
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
