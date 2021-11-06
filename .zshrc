@@ -2,14 +2,15 @@
 
 
 # Nicer prompt.
+function parse_git_branch() {
+    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
+}
 COLOR_DEF=$'\e[0m'
 COLOR_DIR=$'\e[38;5;243m'
 COLOR_GIT=$'%F{blue}'
 setopt PROMPT_SUBST
 export PROMPT='${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
-function parse_git_branch() {
-    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
-}
+
 
 # Custom $PATH with extra locations.
 export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$PATH
