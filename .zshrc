@@ -17,7 +17,7 @@ autoload -Uz compinit && compinit
 setopt MENU_COMPLETE
 
 # Custom $PATH with extra locations.
-export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$PATH
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
 # Tell homebrew to not autoupdate every single time I run it (just once a week).
 export HOMEBREW_AUTO_UPDATE_SECS=604800
@@ -34,7 +34,6 @@ fi
 
 # Git aliases.
 alias g='git'
-
 alias ga='git add'
 alias gaa='git add --all'
 alias gs='git status'
@@ -71,3 +70,9 @@ knownrm() {
 # zsh Plugins
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Pyenv
+eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/shims:$PATH"
