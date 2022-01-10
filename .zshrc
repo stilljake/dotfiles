@@ -71,6 +71,9 @@ knownrm() {
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Configure zsh-autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+
 # Pyenv
 eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init -)"
