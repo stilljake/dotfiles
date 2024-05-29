@@ -17,7 +17,7 @@ autoload -Uz compinit && compinit
 setopt MENU_COMPLETE
 
 # Custom $PATH with extra locations.
-export PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/go/bin:$PATH"
+export PATH="/opt/homebrew/bin:$HOME/bin:/usr/local/bin:$HOME/go/bin:$PATH"
 
 # Tell homebrew to not autoupdate every single time I run it (just once a week).
 export HOMEBREW_AUTO_UPDATE_SECS=604800
