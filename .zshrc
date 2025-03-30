@@ -72,10 +72,16 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Configure zsh-autosuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
 # Pyenv
 eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init -)"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/shims:$PATH"
+
+# fzf & zoxide
+source <(fzf --zsh)
+eval "$(zoxide init zsh)"
+
+alias cdf='cd "$(find ~/Development/ -type d -maxdepth 3 2>/dev/null | fzf)"'
