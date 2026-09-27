@@ -57,6 +57,38 @@ function denter() {
  return 0
 }
 
+# Setup tmux workspace
+# Add to ~/.zshrc
+
+ws() {
+  local session="${1:?Usage: ws <session-name> [working-dir]}"
+  local dir="${2:-$(pwd)}"
+
+  # If session already exists, just attach
+  if tmux has-session -t "$session" 2>/dev/null; then
+    tmux attach -t "$session"
+    return 0
+  fi
+
+  # Window 1: Claude
+  tmux new-session -d -s "$session" -c "$dir" -n "claude"
+  tmux send-keys -t "$session:1" "claude" C-m
+
+  # Window 2: nvim (full screen)
+  tmux new-window -t "$session" -c "$dir" -n "editor"
+  tmux send-keys -t "$session:2" "nvim ." C-m
+
+  # Window 3: k9s (full screen)
+  tmux new-window -t "$session" -c "$dir" -n "k9s"
+  tmux send-keys -t "$session:3" "k9s" C-m
+
+  # Start on window 1 (claude + shell)
+  tmux select-window -t "$session:1"
+  tmux select-pane -t "$session:1.1"
+
+  tmux attach -t "$session"
+}
+
 # Delete a given line number in the known_hosts file.
 knownrm() {
  re='^[0-9]+$'
@@ -84,4 +116,6 @@ export PATH="$PYENV_ROOT/shims:$PATH"
 source <(fzf --zsh)
 eval "$(zoxide init zsh)"
 
-alias cdf='cd "$(find ~/Development/ -type d -maxdepth 3 2>/dev/null | fzf)"'
+alias cdf='cd "$(find . -type d 2>/dev/null | fzf)"'
+
+export PATH="$HOME/.local/bin:$PATH"
