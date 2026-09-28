@@ -1,0 +1,7 @@
+# Global tool versions; per-project versions come from .tool-versions / mise.toml.
+[tools]
+node = "lts"
+
+[settings]
+# Also honour .nvmrc / .node-version files in Node repos.
+idiomatic_version_file_enable_tools = ["node"]

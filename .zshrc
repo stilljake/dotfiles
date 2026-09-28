@@ -16,21 +16,20 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 autoload -Uz compinit && compinit
 setopt MENU_COMPLETE
 
-# Custom $PATH with extra locations.
-export PATH="/opt/homebrew/bin:$HOME/bin:/usr/local/bin:$HOME/go/bin:$PATH"
+# Homebrew (sets PATH, HOMEBREW_PREFIX, etc.)
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Custom $PATH with extra locations (~/bin is where tfswitch puts terraform).
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/go/bin:$PATH"
+
+# History: keep a lot more than the macOS default of 1000 lines.
+HISTFILE=~/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+setopt INC_APPEND_HISTORY HIST_IGNORE_DUPS
 
 # Tell homebrew to not autoupdate every single time I run it (just once a week).
 export HOMEBREW_AUTO_UPDATE_SECS=604800
-
-# Set architecture-specific brew share path.
-arch_name="$(uname -m)"
-if [ "${arch_name}" = "x86_64" ]; then
-    share_path="/usr/local/share"
-elif [ "${arch_name}" = "arm64" ]; then
-    share_path="/opt/homebrew/share"
-else
-    echo "Unknown architecture: ${arch_name}"
-fi
 
 # Git aliases.
 alias g='git'
@@ -58,8 +57,6 @@ function denter() {
 }
 
 # Setup tmux workspace
-# Add to ~/.zshrc
-
 ws() {
   local session="${1:?Usage: ws <session-name> [working-dir]}"
   local dir="${2:-$(pwd)}"
@@ -79,8 +76,8 @@ ws() {
   tmux send-keys -t "$session:2" "nvim ." C-m
 
   # Window 3: k9s (full screen)
-  tmux new-window -t "$session" -c "$dir" -n "k9s"
-  tmux send-keys -t "$session:3" "k9s" C-m
+#  tmux new-window -t "$session" -c "$dir" -n "k9s"
+#  tmux send-keys -t "$session:3" "k9s" C-m
 
   # Start on window 1 (claude + shell)
   tmux select-window -t "$session:1"
@@ -99,23 +96,18 @@ knownrm() {
  fi
 }
 
-# zsh Plugins
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# zsh Plugins (installed via Homebrew)
+source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Configure zsh-autosuggestions
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
-# Pyenv
-eval "$(pyenv virtualenv-init -)"
-eval "$(pyenv init -)"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/shims:$PATH"
+# mise: per-project tool versions (node etc.) from .tool-versions / .nvmrc / mise.toml
+eval "$(mise activate zsh)"
 
 # fzf & zoxide
 source <(fzf --zsh)
 eval "$(zoxide init zsh)"
 
 alias cdf='cd "$(find . -type d 2>/dev/null | fzf)"'
-
-export PATH="$HOME/.local/bin:$PATH"

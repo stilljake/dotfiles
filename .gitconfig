@@ -1,0 +1,7 @@
+[user]
+	name = stilljake
+	email = 22511726+stilljake@users.noreply.github.com
+[push]
+	autoSetupRemote = true
+[init]
+	defaultBranch = main
