@@ -42,7 +42,7 @@ alias gcam='git commit -am'
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 
 # navigation aliases
-alias dev="cd ~/Development/"
+alias src="cd ~/src/"
 alias ..='cd ..'
 
 # Enter a running Docker container.
