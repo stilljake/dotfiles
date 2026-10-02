@@ -43,6 +43,7 @@ alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %
 
 # navigation aliases
 alias src="cd ~/src/"
+alias ra="cd ~/src/ra/"
 alias ..='cd ..'
 
 # Enter a running Docker container.
