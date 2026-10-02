@@ -46,6 +46,11 @@ alias src="cd ~/src/"
 alias ra="cd ~/src/ra/"
 alias ..='cd ..'
 
+# AWS profile aliases (switch profile and show who I am).
+alias aws-stg='export AWS_PROFILE=staging; aws sts get-caller-identity'
+alias aws-prod='export AWS_PROFILE=production; aws sts get-caller-identity'
+alias aws-prod-admin='export AWS_PROFILE=production-admin; aws sts get-caller-identity'
+
 # Enter a running Docker container.
 function denter() {
  if [[ ! "$1" ]] ; then
