@@ -15,6 +15,8 @@ FILES=(
   .claude/CLAUDE.md
   .claude/settings.json
   .claude/keybindings.json
+  .claude/hooks/guard-infra.sh
+  .claude/skills/teach/SKILL.md
 )
 
 for f in "${FILES[@]}"; do
