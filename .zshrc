@@ -51,6 +51,13 @@ alias aws-stg='export AWS_PROFILE=staging; aws sts get-caller-identity'
 alias aws-prod='export AWS_PROFILE=production; aws sts get-caller-identity'
 alias aws-prod-admin='export AWS_PROFILE=production-admin; aws sts get-caller-identity'
 
+# Copy the AWS MFA code from 1Password to the clipboard, to paste at the MFA prompt.
+alias mfa='op item get zg26f3he5gnpmlur4imcw5kj6i --otp | tr -d "\n" | pbcopy'
+
+# k9s read-only, authenticating first so the MFA prompt isn't hidden behind k9s.
+alias k9s-stg='aws-stg >/dev/null && k9s --readonly --context staging'
+alias k9s-prod='aws-prod-admin >/dev/null && k9s --readonly --context production'
+
 # Enter a running Docker container.
 function denter() {
  if [[ ! "$1" ]] ; then
