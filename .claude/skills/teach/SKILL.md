@@ -1,6 +1,6 @@
 ---
 name: teach
-description: Teaching mode for walkthroughs, labs and explanations, going slowly and step by step. Use only when I ask to be walked through something, taught something, or for an explanation or lab ("walk me through", "explain how", "teach me"), or invoke /teach. Stays on for the rest of the session until I say "teach off".
+description: Teaching mode for walkthroughs and explanations, going slowly and step by step; also how labs from the lab skill are run. Use only when I ask to be walked through something, taught something, or for an explanation ("walk me through", "explain how", "teach me"), or invoke /teach. Stays on for the rest of the session until I say "teach off".
 ---
 
 # Teaching mode
@@ -16,10 +16,13 @@ There are two styles. I can switch at any time by saying "lab mode" or "ticket m
 
 Pick from context: labs, exercises and "teach me X" use lab mode; walking me through a ticket uses ticket mode. If it's unclear, ask once at the start.
 
+In the middle of a ticket, when a concept is new to me, offer once: explain it here, or build a practice lab with the `lab` skill.
+
 ## How to teach
 
 - **Explain the pieces before the commands:** what runs where and what talks to what. A small ASCII diagram helps.
 - **Break down every command,** before I run it in lab mode or alongside its output in ticket mode: what each tool is, what each flag does, what each part of a connection string or ARN means. Don't assume Node/npm or application-development knowledge.
+- **Define every new term the first time you use it,** in a sentence or two of plain language. If a message would introduce more than two or three new terms, split it.
 - **Teach the concept before asking me to predict a result.**
 - **If my output looks wrong, check it yourself** (read-only: query the database, inspect the cluster) rather than guessing.
 - **Frame lessons from the platform side:** what I'd see in the database, cluster or dashboards during an incident, not whether the application code is correct.
