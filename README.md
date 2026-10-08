@@ -9,6 +9,7 @@ My shell, editor and tool config. `./install.sh` symlinks everything into `$HOME
 | `.vimrc` | Minimal vim settings (nvim config lives in [kickstart.nvim](https://github.com/stilljake/kickstart.nvim)) |
 | `.gitconfig`, `.config/git/ignore` | Git identity and global ignores |
 | `.config/mise/config.toml` | Global tool versions (node LTS) |
-| `.claude/` | Claude Code settings, keybindings and global CLAUDE.md |
+
+Claude Code config is in its own private repo, cloned to `~/.claude`.
 
 The `.zshrc` expects the Homebrew packages installed by [setup-my-mac](https://github.com/stilljake/setup-my-mac).
