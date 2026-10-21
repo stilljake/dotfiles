@@ -7,7 +7,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Tell homebrew to not autoupdate every single time I run it (just once a week).
 export HOMEBREW_AUTO_UPDATE_SECS=604800
 
-# Custom $PATH with extra locations (~/bin is where tfswitch puts terraform).
+# Custom $PATH with extra locations
 export PATH="$HOME/.local/bin:$HOME/bin:$HOME/go/bin:$PATH"
 
 # Editor for tools that open one (Claude transcript "v", git commit, kubectl edit)
@@ -19,7 +19,7 @@ export GITHUB_PACKAGES_TOKEN="$(gh auth token)"
 
 # --- Shell behaviour ---
 
-# History: keep a lot more than the macOS default of 1000 lines.
+# History: keep more than the macOS default of 1000 lines.
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
@@ -32,7 +32,7 @@ setopt MENU_COMPLETE
 
 # Keep emacs-style line editing; zsh switches to vi mode when EDITOR contains "vi"
 bindkey -e
-# Ctrl+x Ctrl+e opens the current command in $EDITOR; on quit it's back on the prompt to run with Enter
+# Ctrl+x Ctrl+e opens the current command in $EDITOR
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
@@ -50,7 +50,7 @@ export PROMPT='${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
 
 # --- Tools ---
 
-# mise: per-project tool versions (node etc.) from .tool-versions / .nvmrc / mise.toml
+# mise: per-project tool versions
 eval "$(mise activate zsh)"
 
 # fzf (Ctrl+r history, Ctrl+t files) & zoxide
@@ -59,7 +59,7 @@ eval "$(zoxide init zsh)"
 
 # --- Aliases ---
 
-# Same muscle memory as on servers, where vi is all there is
+# Editor
 alias vi='nvim'
 alias vim='nvim'
 
@@ -84,7 +84,7 @@ alias aws-stg='export AWS_PROFILE=staging; aws sts get-caller-identity'
 alias aws-prod='export AWS_PROFILE=production; aws sts get-caller-identity'
 alias aws-prod-admin='export AWS_PROFILE=production-admin; aws sts get-caller-identity'
 
-# Copy the AWS MFA code from 1Password to the clipboard, to paste at the MFA prompt.
+# Copy AWS MFA code from 1Password to clipboard
 alias mfa='op item get zg26f3he5gnpmlur4imcw5kj6i --otp | tr -d "\n" | pbcopy'
 
 # k9s read-only, authenticating first so the MFA prompt isn't hidden behind k9s.
