@@ -3,5 +3,5 @@
 node = "lts"
 
 [settings]
-# Also honour .nvmrc / .node-version files in Node repos.
-idiomatic_version_file_enable_tools = ["node"]
+# Also honour .nvmrc / .node-version and .terraform-version files.
+idiomatic_version_file_enable_tools = ["node", "terraform"]

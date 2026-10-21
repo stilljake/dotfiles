@@ -124,3 +124,6 @@ source <(fzf --zsh)
 eval "$(zoxide init zsh)"
 
 alias cdf='cd "$(find . -type d 2>/dev/null | fzf)"'
+
+# ~/.npmrc reads this for @resident-advisor/* packages on GitHub Packages
+export GITHUB_PACKAGES_TOKEN="$(gh auth token)"
