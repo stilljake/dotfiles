@@ -93,7 +93,7 @@ ws() {
 
   # Window 2: nvim (full screen)
   tmux new-window -t "$session" -c "$dir" -n "editor"
-  tmux send-keys -t "$session:2" "nvim ." C-m
+  tmux send-keys -t "$session:2" "nvim" C-m
 
   # Window 3: k9s (full screen)
 #  tmux new-window -t "$session" -c "$dir" -n "k9s"
