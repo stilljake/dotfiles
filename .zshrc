@@ -31,6 +31,13 @@ setopt INC_APPEND_HISTORY HIST_IGNORE_DUPS
 # Tell homebrew to not autoupdate every single time I run it (just once a week).
 export HOMEBREW_AUTO_UPDATE_SECS=604800
 
+# Editor for tools that open one (Claude transcript "v", git commit, kubectl edit)
+export EDITOR=nvim
+export VISUAL=nvim
+# Same muscle memory as on servers, where vi is all there is
+alias vi='nvim'
+alias vim='nvim'
+
 # Git aliases.
 alias g='git'
 alias ga='git add'
