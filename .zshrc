@@ -11,13 +11,13 @@ COLOR_GIT=$'%F{blue}'
 setopt PROMPT_SUBST
 export PROMPT='${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
 
-# Case insensitive
+# Homebrew (sets PATH, HOMEBREW_PREFIX, etc.)
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Case insensitive (after Homebrew, which adds its completions to fpath)
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 autoload -Uz compinit && compinit
 setopt MENU_COMPLETE
-
-# Homebrew (sets PATH, HOMEBREW_PREFIX, etc.)
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Custom $PATH with extra locations (~/bin is where tfswitch puts terraform).
 export PATH="$HOME/.local/bin:$HOME/bin:$HOME/go/bin:$PATH"
