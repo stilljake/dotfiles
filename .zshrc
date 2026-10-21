@@ -14,7 +14,7 @@ export PATH="$HOME/.local/bin:$HOME/bin:$HOME/go/bin:$PATH"
 export EDITOR=nvim
 export VISUAL=nvim
 
-# ~/.npmrc reads this for @resident-advisor/* packages on GitHub Packages
+# ~/.npmrc reads this for private packages on GitHub Packages
 export GITHUB_PACKAGES_TOKEN="$(gh auth token)"
 
 # --- Shell behaviour ---
