@@ -34,6 +34,12 @@ export HOMEBREW_AUTO_UPDATE_SECS=604800
 # Editor for tools that open one (Claude transcript "v", git commit, kubectl edit)
 export EDITOR=nvim
 export VISUAL=nvim
+# Keep emacs-style line editing; zsh switches to vi mode when EDITOR contains "vi"
+bindkey -e
+# Ctrl+x Ctrl+e opens the current command in $EDITOR; on quit it's back on the prompt to run with Enter
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
 # Same muscle memory as on servers, where vi is all there is
 alias vi='nvim'
 alias vim='nvim'
