@@ -30,6 +30,10 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 autoload -Uz compinit && compinit
 setopt MENU_COMPLETE
 
+# AWS CLI completion
+autoload -Uz bashcompinit && bashcompinit
+complete -C aws_completer aws
+
 # Keep emacs-style line editing; zsh switches to vi mode when EDITOR contains "vi"
 bindkey -e
 # Ctrl+x Ctrl+e opens the current command in $EDITOR
