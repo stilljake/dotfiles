@@ -147,3 +147,8 @@ knownrm() {
 
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/jacob/.docker/completions $fpath)
+autoload -Uz compinit
+(( ${+_comps[docker]} )) || compinit
+# End of Docker CLI completions
